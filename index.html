@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clash Royale Rewards</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet">
   <style>
-    /* --- GLOBAL STYLES --- */
+    /* --- GLOBAL & MAIN PAGE STYLES --- */
     body {
+      /* Dark blue background matching the reference image */
       background-color: #001d36; 
-      /* Updated to cursive as requested */
-      font-family: cursive; 
+      /* Optional: If you find the exact diamond pattern URL, uncomment the next line */
+      /* background-image: url('YOUR_DIAMOND_PATTERN_URL.png'); background-repeat: repeat; */
+      font-family: 'Luckiest Guy', cursive;
       color: white;
       margin: 0;
       padding: 0;
@@ -18,13 +20,13 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
+      justify-content: space-between;
     }
 
     .container { 
         max-width: 500px; 
         margin: 0 auto; 
-        padding: 20px; 
+        padding: 20px 20px 0 20px; 
         flex-grow: 1;
         display: flex;
         flex-direction: column;
@@ -32,204 +34,257 @@
     }
 
     img.logo { 
-        width: 70%; 
-        max-width: 280px;
-        margin-top: 20px; 
-        filter: drop-shadow(0px 4px 0px #000);
+        width: 280px; 
+        margin-top: 30px; 
+        filter: drop-shadow(0px 5px 0px #000);
     }
 
     p.tagline { 
-        font-size: 1.2rem; 
-        margin: 15px 0 25px;
+        font-size: 24px; 
+        margin: 20px 0 30px;
         text-transform: uppercase;
+        letter-spacing: 1px;
         text-shadow: 2px 2px 0 #000;
     }
 
+    /* Main Yellow Button styling to match reference */
     button.main-btn {
       background: linear-gradient(to bottom, #ffe259 0%, #ffa700 100%);
-      border: 3px solid #000;
+      border: 4px solid #000000;
       color: #fff;
-      padding: 15px 30px;
-      font-size: 1.5rem;
-      border-radius: 12px;
+      padding: 18px 40px;
+      font-size: 26px;
+      border-radius: 16px;
       cursor: pointer;
-      font-family: inherit; /* Inherits cursive */
+      font-family: 'Luckiest Guy', cursive;
       text-transform: uppercase;
-      box-shadow: 0 6px 0 #000, inset 0 2px 0 rgba(255,255,255,0.4);
+      box-shadow: 0 8px 0 #000000, inset 0 2px 0 rgba(255,255,255,0.4);
       text-shadow: 2px 2px 0 #000;
-      width: 100%;
-      max-width: 320px;
+      transition: all 0.1s ease;
+      width: 90%;
+      max-width: 350px;
     }
 
+    button.main-btn:hover { 
+        transform: translateY(2px);
+        box-shadow: 0 6px 0 #000000, inset 0 2px 0 rgba(255,255,255,0.4);
+        background: linear-gradient(to bottom, #ffea85 0%, #ffb700 100%);
+    }
+
+    button.main-btn:active { 
+        transform: translateY(6px);
+        box-shadow: 0 2px 0 #000000, inset 0 2px 0 rgba(255,255,255,0.4);
+    }
+
+    /* App Store Badges Container */
     .store-badges {
-        margin: 25px 0;
+        margin: 30px 0;
         display: flex;
-        gap: 10px;
+        gap: 15px;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
-    .store-badge-img { height: 40px; border-radius: 8px; border: 1px solid #000; }
+    .store-badge-img {
+        height: 50px;
+        border: 2px solid #000;
+        border-radius: 10px;
+        box-shadow: 0 4px 0 #000;
+        transition: transform 0.1s;
+    }
+    .store-badge-img:hover { transform: translateY(2px); box-shadow: 0 2px 0 #000; }
 
-    .deco img { width: 250px; margin-top: auto; }
+    /* King Character */
+    .deco {
+        margin-top: auto; /* Pushes to bottom */
+        margin-bottom: -5px;
+    }
+    .deco img {
+        width: 280px;
+        filter: drop-shadow(0px -5px 10px rgba(0,0,0,0.5));
+    }
 
-    /* --- POPUP (MODAL) --- */
+
+    /* --- MODAL (POPUP) PROFESSIONAL THEME --- */
+    :root {
+      --modal-bg: #002a4d; /* Dark blue game UI color */
+      --modal-border: #ffcc00; /* Gold border */
+      --card-bg: #00427a;
+      --accent-yellow: #ffcc00;
+    }
+
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      /* Background opacity set to 0.8 */
-      background: rgba(0, 0, 0, 0); 
-      backdrop-filter: blur(3px);
+      background: rgba(0, 0, 0, 0.85); /* Darker overlay */
+      backdrop-filter: blur(5px);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      padding: 15px;
-      box-sizing: border-box;
+      z-index: 2000;
     }
 
-    .modal-overlay.active { display: flex; animation: popIn 0.3s ease-out; }
+    .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
 
     .modal-content {
-      /* Container remains solid (Opacity 1) */
-      opacity: 1; 
-      background: #002a4d;
-      width: 100%;
-      max-width: 400px;
-      border-radius: 24px;
-      border: 4px solid #ffcc00;
-      box-shadow: 0 0 30px rgba(0,0,0,1);
+      background: var(--modal-bg);
+      width: 90%;
+      max-width: 420px;
+      border-radius: 20px;
+      border: 4px solid var(--modal-border);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.5);
+      color: white;
+      overflow: hidden;
+      text-align: center;
       position: relative;
-      overflow: hidden; 
     }
 
     .modal-header {
-      padding: 20px 15px;
-      background: linear-gradient(to bottom, #00427a, #002a4d);
-      border-bottom: 3px solid #001a30;
+      background: linear-gradient(to bottom, #003866, #002a4d);
+      padding: 20px;
+      border-bottom: 3px solid #001527;
+      position: relative;
     }
 
     .modal-header h2 {
         margin: 0;
-        color: #ffcc00;
-        text-shadow: 2px 2px 0 #000;
-        font-size: 22px;
+        font-family: 'Luckiest Guy', cursive;
+        color: var(--accent-yellow);
         text-transform: uppercase;
+        text-shadow: 2px 2px 0 #000;
+        font-size: 28px;
     }
 
+    /* Styled Close Button */
     .close-btn { 
-        position: absolute; top: 10px; right: 10px;
-        background: #e74c3c; border: 2px solid #000;
-        color: white; font-family: cursive;
-        width: 32px; height: 32px; border-radius: 6px;
-        cursor: pointer; box-shadow: 0 3px 0 #922b21;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #c0392b;
+        border: 2px solid #000;
+        color: white;
+        font-family: 'Luckiest Guy', cursive;
+        font-size: 20px;
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 0 #7f261c;
     }
-
-    .hype-section {
-        padding: 15px;
-        background: rgba(255, 204, 0, 0.1);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .hype-text {
-        color: #fff;
-        font-size: 16px;
-        line-height: 1.3;
-        margin: 0;
-    }
-
-    .hype-highlight { color: #ffcc00; font-size: 18px; display: block; margin-top: 5px; }
+    .close-btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #7f261c; }
 
     .offer-list { 
-        padding: 15px;
-        overflow: hidden; 
+        padding: 20px; 
+        max-height: 350px; 
+        overflow-y: auto;
+        /* Custom scrollbar for game feel */
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent-yellow) var(--modal-bg);
     }
+    /* Webkit scrollbar styling */
+    .offer-list::-webkit-scrollbar { width: 8px; }
+    .offer-list::-webkit-scrollbar-track { background: var(--modal-bg); }
+    .offer-list::-webkit-scrollbar-thumb { background-color: var(--accent-yellow); border-radius: 10px; border: 2px solid var(--modal-bg); }
 
+
+    /* Professional Offer Card Styling */
     .offer-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px;
-      margin-bottom: 10px;
-      background: #00427a;
+      display: block;
+      padding: 15px;
+      margin-bottom: 12px;
+      background: var(--card-bg);
       border: 2px solid #0056b3;
-      border-radius: 15px;
+      border-radius: 12px;
       text-decoration: none;
       color: white;
-      transition: all 0.2s;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+      font-family: sans-serif;
+      text-align: left;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.3);
     }
 
-    .offer-card:hover { border-color: #ffcc00; transform: translateY(-2px); background: #005094; }
+    .offer-card:hover {
+        background: #005094;
+        border-color: var(--accent-yellow);
+        transform: scale(1.02);
+    }
 
-    .offer-info { text-align: left; }
-
-    /* Offer Title updated with weight 900 */
-    .offer-title {
+    /* Styling the anchor text inside the offer info */
+    .offer-card strong {
+        color: var(--accent-yellow);
+        font-size: 18px;
         display: block;
-        color: #ffcc00;
-        font-size: 17px;
-        margin-bottom: 2px;
-        font-weight: 900; 
+        margin-bottom: 5px;
+        font-family: 'Luckiest Guy', cursive;
+        letter-spacing: 0.5px;
     }
 
-    .offer-sub { font-family: sans-serif; font-size: 11px; opacity: 0.6; font-weight: bold; text-transform: uppercase; }
-
-    .claim-tag {
-        background: #27ae60;
-        padding: 5px 10px;
-        border-radius: 8px;
-        font-size: 12px;
-        box-shadow: 0 2px 0 #1e8449;
+    footer { 
+        margin-top: 20px; 
+        background: rgba(0, 0, 0, 0.5); 
+        padding: 15px; 
+        font-size: 12px; 
+        font-family: sans-serif;
     }
+    
+    /* Success Message Style inside Modal */
+    .success-msg {
+        background: #00427a;
+        border: 3px solid #059669;
+        border-radius: 15px;
+        padding: 25px;
+        animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .success-msg h3 {
+        color: #059669;
+        font-size: 26px;
+        margin-top: 0;
+        text-shadow: 1px 1px 0 #000;
+    }
+    .success-msg p { font-family: sans-serif; line-height: 1.5; }
 
-    .success-msg { padding: 40px 20px; }
-    .success-msg h3 { color: #2ecc71; font-size: 24px; margin-bottom: 10px; }
-
-    @keyframes popIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-    footer { padding: 15px; font-size: 11px; opacity: 0.6; font-family: sans-serif; }
-    button#openOffers{ font-family: fantasy; }
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
   </style>
 </head>
 
 <body>
   <div class="container">
     <img src="https://logos-world.net/wp-content/uploads/2023/05/Clash-Royale-Logo.png" alt="Clash Royale Logo" class="logo">
-    <p class="tagline">Epic Rewards Await!</p>
+    <p class="tagline">Epic Real-Time Card Battles</p>
 
-    <button id="openOffers" class="main-btn" style="font-family: fantasy;">Open Clash Royale</button>
+    <button id="openOffers" class="main-btn">Open Clash Royale</button>
 
     <div class="store-badges">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="store-badge-img">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="store-badge-img">
+        <a href="#" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" class="store-badge-img">
+        </a>
+        <a href="#" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" class="store-badge-img">
+        </a>
     </div>
 
     <div class="deco">
-      <img src="https://i.ibb.co/1YyrpKyn/king.png" alt="King">
+      <img src="https://i.ibb.co/1YyrpKyn/king.png" alt="Decoration">
     </div>
   </div>
 
   <div id="offerModal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
-          <h2>REWARD CENTER</h2>
-          <button class="close-btn" id="closeOffers">X</button>
+        <h2>Claim Rewards!</h2>
+        <button class="close-btn" id="closeOffers">X</button>
       </div>
-      
-      <div class="hype-section">
-          <p class="hype-text">
-            ALMOST THERE! COMPLETE 1 TASK TO UNLOCK YOUR CHEST.
-            <span class="hype-highlight">⚡ INSTANT DELIVERY ⚡</span>
-          </p>
-      </div>
-
       <div id="offerList" class="offer-list">
-        <p>Searching for loot...</p>
+        <p style="font-family: sans-serif; opacity: 0.7;">Loading challenges...</p>
       </div>
     </div>
   </div>
 
-  <footer>© 2026 Supercell Landers</footer>
+  <footer>
+    <div>Let's Go!</div>
+  </footer>
 
   <script>
     const modal = document.getElementById('offerModal');
@@ -239,46 +294,57 @@
 
     const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900&s1=&s2=";
 
+    // --- 1. THE ONLEAD EVENT ---
     function onLead(campaign_id, campaign_name) {
+        console.log("Lead detected for: " + campaign_name);
+        
+        // Update the modal with a themed success message
         offerList.innerHTML = `
             <div class="success-msg">
-                <h3>✔ SUCCESS!</h3>
-                <p>The King has approved your request. Rewards arriving in 2-5 minutes!</p>
+                <h3>✔ Reward Unlocked!</h3>
+                <p>Awesome! Your Clash Royale rewards are on their way. Check your account shortly!</p>
             </div>
         `;
     }
 
+    // --- 2. FETCH OFFERS ---
     async function fetchOffers() {
       try {
         const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('API Error');
         const data = await response.json();
         
         if(data && data.length > 0) {
-          // Limited to first 3 offers
-          offerList.innerHTML = data.slice(0, 3).map(offer => `
+          // Mapping the data to the new professional card style
+          offerList.innerHTML = data.slice(0, 5).map(offer => `
             <a href="${offer.url}" target="_blank" class="offer-card">
-              <div class="offer-info">
-                <span class="offer-title">${offer.anchor}</span>
-                <span class="offer-sub">Status: ${offer.conversion}</span>
-              </div>
-              <div class="claim-tag">GO!</div>
+              <strong>${offer.anchor}</strong>
+              <div style="font-size:13px; opacity:0.8; font-weight:normal;">Is it free? ${offer.conversion}</div>
             </a>
           `).join('');
         } else {
-          offerList.innerHTML = '<p>No rewards available. Try again later!</p>';
+          offerList.innerHTML = '<p style="font-family: sans-serif;">No offers available right now.</p>';
         }
       } catch (err) {
-        offerList.innerHTML = '<p>Connection Error. Refresh page.</p>';
+        offerList.innerHTML = '<p style="font-family: sans-serif; color: #ff6b6b;">Error connecting to server.</p>';
       }
     }
 
-    openBtn.addEventListener('click', () => {
-      modal.classList.add('active');
-      fetchOffers();
-    });
+    // --- 3. EVENT LISTENERS ---
+    function openModal() {
+      if (modal) {
+        modal.classList.add('active');
+        // Reset content to loading state before fetching
+        offerList.innerHTML = '<p style="font-family: sans-serif; opacity: 0.7;">Loading challenges...</p>';
+        fetchOffers();
+      }
+    }
 
-    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-    window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
   </script>
 </body>
 </html>

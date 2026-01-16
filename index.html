@@ -1,10 +1,12 @@
-<html lang="en"><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clash Royale</title>
-  <meta name="description" content="Open link in Clash Royale or download the game.">
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet">
   <style>
+    /* UI STYLES */
     body {
       font-family: 'Luckiest Guy', cursive;
       background: url('https://i.ibb.co/jkydmhyk/background.jpg') no-repeat center center fixed;
@@ -26,24 +28,11 @@
       z-index: -1;
     }
 
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
+    .container { max-width: 400px; margin: 0 auto; padding: 40px 20px; }
+    img.logo { width: 220px; margin-top: 40px; }
+    p.tagline { font-size: 18px; margin: 15px 0 30px; }
 
-    img.logo {
-      width: 220px;
-      margin-top: 40px;
-    }
-
-    p.tagline {
-      font-size: 18px;
-      margin: 15px 0 30px;
-    }
-
-    /* Clash Royale-style button */
-    button {
+    button.main-btn {
       background: linear-gradient(180deg, #ffcc00 0%, #e6b800 100%);
       border: 3px solid #000;
       color: #fff;
@@ -53,329 +42,151 @@
       cursor: pointer;
       font-family: 'Luckiest Guy', cursive;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow:
-        -2px -2px 0 #000,
-         2px -2px 0 #000,
-        -2px  2px 0 #000,
-         2px  2px 0 #000,
-         0px  3px 6px rgba(0,0,0,0.7);
       box-shadow: 0 6px 0 #000;
-      transition: transform 0.2s ease, background 0.3s ease;
+      transition: transform 0.2s ease;
     }
 
-    button:hover {
-      background: linear-gradient(180deg, #ffd633 0%, #ffcc00 100%);
-      transform: scale(1.05);
+    button.main-btn:hover { transform: scale(1.05); }
+
+    /* MODAL STYLES */
+    :root {
+      --primary: #2563eb;
+      --text-dark: #1f2937;
+      --bg-white: #ffffff;
     }
 
-    .download {
-      margin-top: 25px;
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
     }
 
-    .download img {
-      width: 180px;
+    .modal-overlay.active { display: flex; }
+
+    .modal-content {
+      background: var(--bg-white);
+      width: 90%;
+      max-width: 400px;
+      border-radius: 16px;
+      color: #000;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .modal-header {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-btn { background: none; border: none; font-size: 24px; cursor: pointer; }
+
+    .offer-list { padding: 15px; max-height: 350px; overflow-y: auto; }
+
+    .offer-card {
+      display: block;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #f3f4f6;
       border-radius: 8px;
-    }
-
-    .deco {
-      margin-top: 40px;
-    }
-
-    .deco img {
-      width: 220px;
-      opacity: 0.95;
-    }
-
-    footer {
-      margin-top: 60px;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 20px;
-      font-size: 13px;
-      backdrop-filter: blur(5px);
-    }
-
-    footer a {
-      color: #fff;
-      margin: 0 8px;
       text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
     }
 
-    footer img {
-      width: 40px;
-      vertical-align: middle;
-      margin-right: 5px;
-    }
-
-    .socials {
-      margin-top: 10px;
-    }
-
-    .socials a {
-      display: inline-block;
-      margin: 0 5px;
-    }
-
-    .socials svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-    }
+    footer { margin-top: 60px; background: rgba(0, 0, 0, 0.4); padding: 20px; font-size: 13px; }
   </style>
-  
+</head>
 
-  
-<link rel="me" href="https://www.blogger.com/profile/10652624840939110382">
-<meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
-<meta name="google-adsense-platform-domain" content="blogspot.com">
-<link rel="me" href="https://www.blogger.com/profile/16214705922999508669">
-<meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
-<meta name="google-adsense-platform-domain" content="blogspot.com">
-<link rel="me" href="https://www.blogger.com/profile/15812316838199955329">
-<meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
-<meta name="google-adsense-platform-domain" content="blogspot.com">
-<link data-it="4567958" rel="stylesheet" id="xfSPECIFICSTYLE" href="https://d2xohqmdyl2cj3.cloudfront.net/public/clockers/PrimeApps/cssXF.css"><style type="text/css" id="xfSettingsCSS">#xf_MODAL_CONTAINER #xfMODALCONTENT{animation-duration: 600ms;-webkit-transition: all 600ms;transition: all 600ms;transition-duration: 600ms;}</style><script id="xfLEADCHECK" type="text/javascript" src="https://d2xohqmdyl2cj3.cloudfront.net/public/external/check.php?it=4567958&amp;time=1764597274913"></script></head>
-
-	<style>
-  :root {
-    --primary: #2563eb;
-    --text-dark: #1f2937;
-    --text-light: #6b7280;
-    --bg-white: #ffffff;
-    --radius: 16px;
-  }
-
-  /* Overlay with blur */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    display: none; /* Hidden by default */
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .modal-overlay.active {
-    display: flex;
-    opacity: 1;
-  }
-
-  /* Modal Container */
-  .modal-content {
-    background: var(--bg-white);
-    width: 90%;
-    max-width: 450px;
-    border-radius: var(--radius);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-    overflow: hidden;
-  }
-
-  .modal-overlay.active .modal-content {
-    transform: translateY(0);
-  }
-
-  /* Header */
-  .modal-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #f3f4f6;
-  }
-
-  .modal-header h2 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--text-dark);
-    font-family: sans-serif;
-  }
-
-  .close-btn {
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: var(--text-light);
-  }
-
-  /* Offer Items */
-  .offer-list {
-    padding: 15px;
-    max-height: 400px;
-    overflow-y: auto;
-  }
-
-  .offer-card {
-    display: block;
-    text-decoration: none;
-    padding: 16px;
-    margin-bottom: 12px;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-  }
-
-  .offer-card:hover {
-    background: #fff;
-    border-color: var(--primary);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    transform: scale(1.02);
-  }
-
-  .offer-anchor {
-    display: block;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 4px;
-  }
-
-  .offer-conversion {
-    font-size: 0.85rem;
-    color: var(--text-light);
-  }
-
-  /* Trigger Button Styling */
-  .trigger-btn {
-    padding: 12px 24px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-  }
-</style>
-
-<script>
-  const modal = document.getElementById('offerModal');
-  const offerList = document.getElementById('offerList');
-  const openBtn = document.getElementById('openOffers');
-  const closeBtn = document.getElementById('closeOffers');
-
-  const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900&s1=&s2=";
-
-  async function fetchOffers() {
-    try {
-      const response = await fetch(API_URL);
-      if (!response.ok) throw new Error('API Error');
-      const data = await response.json();
-      renderOffers(data.slice(0, 5));
-    } catch (err) {
-      offerList.innerHTML = '<p style="text-align:center">Failed to load offers.</p>';
-    }
-  }
-
-  function renderOffers(offers) {
-    offerList.innerHTML = offers.map(offer => `
-      <a href="${offer.url}" target="_blank" class="offer-card">
-        <span class="offer-anchor">${offer.anchor}</span>
-        <span class="offer-conversion">${offer.conversion}</span>
-      </a>
-    `).join('');
-  }
-
-  // Open Modal Logic
-  function myFunc(){
-
-    modal.classList.add('active');
-    fetchOffers(); // Fetch only when opened to save resources
- 
-	}
-  openBtn.addEventListener('click', myFunc())
-
-  // Close Modal Logic
-  closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-  });
-
-  // Close on outside click
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.remove('active');
-  });
-	myFunc();
-</script>
-	
-	
-	<body bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJUSUtUT0siOiJkaXNhYmxlZCIsIkxJTktFRElOIjoiZGlzYWJsZWQiLCJDT05GSUciOiJkaXNhYmxlZCJ9LCJ2ZXJzaW9uIjoiMi4wLjM1Iiwic2NvcmUiOjIwMDM1fV0=" __processed_6926765a-0ed3-48f6-b81d-6dab2b16a48c__="true" bis_skin_checked="1">
-
-  <div class="container" bis_skin_checked="1">
+<body>
+  <div class="container">
     <img src="https://logos-world.net/wp-content/uploads/2023/05/Clash-Royale-Logo.png" alt="Clash Royale Logo" class="logo">
     <p class="tagline">Epic Real-Time Card Battles</p>
 
-    <!-- Clash Royale styled button -->
-    <button onclick=myFunc()">Open Clash Royale</button>
+    <button id="openOffers" class="main-btn" onclick="myFunc()">Open Clash Royale</button>
 
-    <div class="download" bis_skin_checked="1">
-      <a href="https://supercell.com/en/games/clashroyale/" bis_skin_checked="1" bis_size="{&quot;x&quot;:578,&quot;y&quot;:401,&quot;w&quot;:183,&quot;h&quot;:20,&quot;abs_x&quot;:578,&quot;abs_y&quot;:401}">
-        <img src="https://i.ibb.co/0y75x7Sd/ios-white.png" alt="Google Play" bis_size="{&quot;x&quot;:578,&quot;y&quot;:364,&quot;w&quot;:180,&quot;h&quot;:53,&quot;abs_x&quot;:578,&quot;abs_y&quot;:364}" bis_id="bn_ssyuio94yhnwayh046usvs">
-      </a>
-	  <a href="https://supercell.com/en/games/clashroyale/" bis_skin_checked="1" bis_size="{&quot;x&quot;:761,&quot;y&quot;:401,&quot;w&quot;:180,&quot;h&quot;:20,&quot;abs_x&quot;:761,&quot;abs_y&quot;:401}">
-        <img src="https://i.ibb.co/GQWMT5RV/googleplay.png" alt="Google Play" bis_size="{&quot;x&quot;:761,&quot;y&quot;:364,&quot;w&quot;:180,&quot;h&quot;:53,&quot;abs_x&quot;:761,&quot;abs_y&quot;:364}" bis_id="bn_8y1hny58h5e8pc4pl0yeeg">
-      </a>
+    <div class="deco">
+      <img src="https://i.ibb.co/1YyrpKyn/king.png" alt="Decoration" style="width:200px;">
     </div>
+  </div>
 
-    <div class="deco" bis_skin_checked="1">
-      <img src="https://i.ibb.co/1YyrpKyn/king.png" alt="Decoration">
+  <div id="offerModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 style="margin:0; font-family: sans-serif;">Special Rewards</h2>
+        <button class="close-btn" id="closeOffers">&times;</button>
+      </div>
+      <div id="offerList" class="offer-list">
+        <p>Searching for rewards...</p>
+      </div>
     </div>
   </div>
 
   <footer>
-    <div bis_skin_checked="1">
-      <a href="https://supercell.com/en/parents/en" bis_skin_checked="1">Parent's Guide</a> |
-      <a href="https://supercell.com/en/terms-of-service/en" bis_skin_checked="1">Terms &amp; Service</a> |
-      <a href="https://supercell.com/en/privacy-policy/en" bis_skin_checked="1">Privacy Policy</a>
-    </div>
-    <div class="socials" bis_skin_checked="1">
-      <a href="https://facebook.com/ClashRoyale" aria-label="Facebook" bis_skin_checked="1">
-        <svg viewBox="0 0 24 24"><path d="M22,12A10,10 0 1,0 12,22V14H9V11H12V8.5A3.5,3.5 0 0,1 15.5,5H18V8H16A1,1 0 0,0 15,9V11H18L17.5,14H15V22A10,10 0 0,0 22,12Z"></path></svg>
-      </a>
-      <a href="https://twitter.com/ClashRoyale" aria-label="Twitter" bis_skin_checked="1">
-        <svg viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.5.59-2.33.7a4.15 4.15 0 0 0 1.82-2.27 8.36 8.36 0 0 1-2.6 1 4.14 4.14 0 0 0-7.12 3.78A11.76 11.76 0 0 1 3.15 4.7a4.13 4.13 0 0 0 1.28 5.52 4.09 4.09 0 0 1-1.88-.5v.05a4.15 4.15 0 0 0 3.32 4.06 4.2 4.2 0 0 1-1.87.07 4.15 4.15 0 0 0 3.87 2.88A8.31 8.31 0 0 1 2 19.54a11.72 11.72 0 0 0 6.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.35-.01-.53A8.2 8.2 0 0 0 22.46 6z"></path></svg>
-      </a>
-    </div>
-    <div style="margin-top:10px;" bis_skin_checked="1">© Supercell 2025</div>
+    <div>© Supercell 2026</div>
   </footer>
 
+  <script>
+    // Elements are defined here
+    const modal = document.getElementById('offerModal');
+    const offerList = document.getElementById('offerList');
+    const closeBtn = document.getElementById('closeOffers');
+    const openBtn = document.getElementById('openOffers'); // Target the main button
 
-<div id="xf_MODAL_CONTAINER" bis_skin_checked="1" style="display: none;"><div id="xf_MODAL" bis_skin_checked="1">
-    <div id="xfMODALCONTENT" class="xf_fadeIn" bis_skin_checked="1">
-        <div id="xfMODALHEADER" bis_skin_checked="1">
-            <div id="xfMODALTITLE" bis_skin_checked="1"></div> </div>
-        <div id="xfMODALBODY" bis_skin_checked="1">
-            <iframe id="xfOFFERS" style="overflow:hidden;" src=""></iframe>
-        </div>
-        <div id="xfMODALFOOTER" bis_skin_checked="1">
-            <p id="xfMODALFOOTERTEXT"></p>
-        </div>
-    </div>
-</div>
-</div>
+    const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900&s1=&s2=";
 
+    async function fetchOffers() {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('API Error');
+        const data = await response.json();
+        
+        // Render only if data exists
+        if(data && data.length > 0) {
+          offerList.innerHTML = data.slice(0, 5).map(offer => `
+            <a href="${offer.url}" target="_blank" class="offer-card">
+              ${offer.anchor}
+              <div style="font-size:12px; color:#666; font-weight:normal;">${offer.conversion}</div>
+            </a>
+          `).join('');
+        } else {
+          offerList.innerHTML = '<p>No offers available right now.</p>';
+        }
+      } catch (err) {
+        offerList.innerHTML = '<p>Error loading offers. Please try again.</p>';
+      }
+    }
 
-<div id="offerModal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Exclusive Offers</h2>
-      <button class="close-btn" id="closeOffers">&times;</button>
-    </div>
-    <div id="offerList" class="offer-list">
-      <div class="loader">Loading amazing deals...</div>
-    </div>
-  </div>
-</div>
+    function myFunc() {
+      if (modal) {
+        modal.classList.add('active');
+        fetchOffers();
+      }
+    }
 
+    // FIXED: Removed the () from myFunc so it doesn't fire immediately on load
+    if (openBtn) {
+      openBtn.addEventListener('click', myFunc);
+    }
 
+    // Close logic
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    }
 
-
-
-</body></html>
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

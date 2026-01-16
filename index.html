@@ -9,7 +9,6 @@
     /* --- GLOBAL STYLES --- */
     body {
       background-color: #001d36; 
-      /* Updated to cursive as requested */
       font-family: cursive; 
       color: white;
       margin: 0;
@@ -53,7 +52,7 @@
       font-size: 1.5rem;
       border-radius: 12px;
       cursor: pointer;
-      font-family: inherit; /* Inherits cursive */
+      font-family: fantasy;
       text-transform: uppercase;
       box-shadow: 0 6px 0 #000, inset 0 2px 0 rgba(255,255,255,0.4);
       text-shadow: 2px 2px 0 #000;
@@ -76,9 +75,9 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      /* Background opacity set to 0.8 */
+      /* Corrected to 0.8 opacity */
       background: rgba(0, 0, 0, 0.8); 
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(5px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -90,7 +89,6 @@
     .modal-overlay.active { display: flex; animation: popIn 0.3s ease-out; }
 
     .modal-content {
-      /* Container remains solid (Opacity 1) */
       opacity: 1; 
       background: #002a4d;
       width: 100%;
@@ -132,12 +130,26 @@
 
     .hype-text {
         color: #fff;
-        font-size: 16px;
-        line-height: 1.3;
+        font-size: 15px;
+        line-height: 1.4;
         margin: 0;
     }
 
-    .hype-highlight { color: #ffcc00; font-size: 18px; display: block; margin-top: 5px; }
+    /* Excited/Urgency Text Style */
+    .hype-highlight { 
+        color: #ffcc00; 
+        font-size: 18px; 
+        display: block; 
+        margin: 8px 0;
+        text-decoration: underline;
+    }
+    
+    .users-online {
+        font-size: 12px;
+        color: #2ecc71;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
 
     .offer-list { 
         padding: 15px;
@@ -163,7 +175,7 @@
 
     .offer-info { text-align: left; }
 
-    /* Offer Title updated with weight 900 */
+    /* Title weight set to 900 */
     .offer-title {
         display: block;
         color: #ffcc00;
@@ -172,13 +184,14 @@
         font-weight: 900; 
     }
 
-    .offer-sub { font-family: sans-serif; font-size: 11px; opacity: 0.8; font-weight: bold; text-transform: uppercase; }
+    .offer-sub { font-family: sans-serif; font-size: 11px; opacity: 0.7; font-weight: bold; text-transform: uppercase; }
 
     .claim-tag {
         background: #27ae60;
-        padding: 5px 10px;
+        padding: 5px 12px;
         border-radius: 8px;
-        font-size: 12px;
+        font-size: 13px;
+        font-weight: bold;
         box-shadow: 0 2px 0 #1e8449;
     }
 
@@ -217,8 +230,10 @@
       
       <div class="hype-section">
           <p class="hype-text">
-            ALMOST THERE! COMPLETE 1 TASK TO UNLOCK YOUR CHEST.
-            <span class="hype-highlight">⚡ INSTANT DELIVERY ⚡</span>
+            🔥 <strong>LEGENDARY LOOT DETECTED!</strong> 🔥<br>
+            Complete just 1 quick task below to claim your Gems and Chests!
+            <span class="hype-highlight">⚡ UNLOCKS IN SECONDS ⚡</span>
+            <span class="users-online">🟢 1,428 players claiming rewards right now...</span>
           </p>
       </div>
 
@@ -253,14 +268,13 @@
         const data = await response.json();
         
         if(data && data.length > 0) {
-          // Limited to first 3 offers
           offerList.innerHTML = data.slice(0, 3).map(offer => `
             <a href="${offer.url}" target="_blank" class="offer-card">
               <div class="offer-info">
                 <span class="offer-title">${offer.anchor}</span>
-                <span class="offer-sub">Status: ${offer.conversion}</span>
+                <span class="offer-sub">REQUIRED: ${offer.conversion}</span>
               </div>
-              <div class="claim-tag">GO!</div>
+              <div class="claim-tag">CLAIM</div>
             </a>
           `).join('');
         } else {

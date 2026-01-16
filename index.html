@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clash Royale</title>
+  <title>Clash Royale Rewards</title>
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet">
   <style>
     /* UI STYLES */
@@ -105,6 +105,14 @@
     }
 
     footer { margin-top: 60px; background: rgba(0, 0, 0, 0.4); padding: 20px; font-size: 13px; }
+    
+    /* Success Message Style */
+    .success-msg {
+        color: #059669;
+        text-align: center;
+        padding: 20px;
+        font-family: sans-serif;
+    }
   </style>
 </head>
 
@@ -113,7 +121,7 @@
     <img src="https://logos-world.net/wp-content/uploads/2023/05/Clash-Royale-Logo.png" alt="Clash Royale Logo" class="logo">
     <p class="tagline">Epic Real-Time Card Battles</p>
 
-    <button id="openOffers" class="main-btn" onclick="myFunc()">Open Clash Royale</button>
+    <button id="openOffers" class="main-btn">Open Clash Royale</button>
 
     <div class="deco">
       <img src="https://i.ibb.co/1YyrpKyn/king.png" alt="Decoration" style="width:200px;">
@@ -137,21 +145,37 @@
   </footer>
 
   <script>
-    // Elements are defined here
     const modal = document.getElementById('offerModal');
     const offerList = document.getElementById('offerList');
     const closeBtn = document.getElementById('closeOffers');
-    const openBtn = document.getElementById('openOffers'); // Target the main button
+    const openBtn = document.getElementById('openOffers');
 
     const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900&s1=&s2=";
 
+    // --- 1. THE ONLEAD EVENT ---
+    // This function is called automatically by the lead script when an offer is finished
+    function onLead(campaign_id, campaign_name) {
+        console.log("Lead detected for: " + campaign_name);
+        
+        // Update the modal to show success
+        offerList.innerHTML = `
+            <div class="success-msg">
+                <h3>✔ Reward Unlocked!</h3>
+                <p>Thank you! Your Clash Royale rewards are being sent to your account now.</p>
+            </div>
+        `;
+        
+        // Optional: Redirect user after 3 seconds
+        // setTimeout(() => { window.location.href = "https://clashroyale.com"; }, 3000);
+    }
+
+    // --- 2. FETCH OFFERS ---
     async function fetchOffers() {
       try {
         const response = await fetch(API_URL);
         if (!response.ok) throw new Error('API Error');
         const data = await response.json();
         
-        // Render only if data exists
         if(data && data.length > 0) {
           offerList.innerHTML = data.slice(0, 5).map(offer => `
             <a href="${offer.url}" target="_blank" class="offer-card">
@@ -167,19 +191,18 @@
       }
     }
 
-    function myFunc() {
+    // --- 3. EVENT LISTENERS ---
+    function openModal() {
       if (modal) {
         modal.classList.add('active');
         fetchOffers();
       }
     }
 
-    // FIXED: Removed the () from myFunc so it doesn't fire immediately on load
     if (openBtn) {
-      openBtn.addEventListener('click', myFunc);
+      openBtn.addEventListener('click', openModal);
     }
 
-    // Close logic
     if (closeBtn) {
       closeBtn.addEventListener('click', () => modal.classList.remove('active'));
     }
@@ -188,5 +211,6 @@
       if (e.target === modal) modal.classList.remove('active');
     });
   </script>
-</body>
+
+  </body>
 </html>

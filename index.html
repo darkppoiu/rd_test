@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Clash Royale Rewards</title>
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
   <style>
     /* --- GLOBAL STYLES --- */
     body {
-      background-color: #001d36; 
-      font-family: cursive; 
+      background-color: #001d36;
+      /* Updated to Luckiest Guy */
+      font-family: 'Luckiest Guy', cursive; 
       color: white;
       margin: 0;
       padding: 0;
@@ -19,7 +20,6 @@
       flex-direction: column;
       overflow-x: hidden;
     }
-
     .container { 
         max-width: 500px; 
         margin: 0 auto; 
@@ -29,21 +29,18 @@
         flex-direction: column;
         align-items: center;
     }
-
     img.logo { 
         width: 70%; 
         max-width: 280px;
         margin-top: 20px; 
         filter: drop-shadow(0px 4px 0px #000);
     }
-
     p.tagline { 
         font-size: 1.2rem; 
         margin: 15px 0 25px;
         text-transform: uppercase;
         text-shadow: 2px 2px 0 #000;
     }
-
     button.main-btn {
       background: linear-gradient(to bottom, #ffe259 0%, #ffa700 100%);
       border: 3px solid #000;
@@ -52,32 +49,27 @@
       font-size: 1.5rem;
       border-radius: 12px;
       cursor: pointer;
-      font-family: fantasy;
+      font-family: inherit; /* Inherits the new font */
       text-transform: uppercase;
       box-shadow: 0 6px 0 #000, inset 0 2px 0 rgba(255,255,255,0.4);
       text-shadow: 2px 2px 0 #000;
       width: 100%;
       max-width: 320px;
     }
-
     .store-badges {
         margin: 25px 0;
         display: flex;
         gap: 10px;
         justify-content: center;
     }
-
     .store-badge-img { height: 40px; border-radius: 8px; border: 1px solid #000; }
-
     .deco img { width: 250px; margin-top: auto; }
-
     /* --- POPUP (MODAL) --- */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      /* Corrected to 0.8 opacity */
       background: rgba(0, 0, 0, 0.8); 
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(3px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -85,9 +77,7 @@
       padding: 15px;
       box-sizing: border-box;
     }
-
     .modal-overlay.active { display: flex; animation: popIn 0.3s ease-out; }
-
     .modal-content {
       opacity: 1; 
       background: #002a4d;
@@ -99,13 +89,11 @@
       position: relative;
       overflow: hidden; 
     }
-
     .modal-header {
       padding: 20px 15px;
       background: linear-gradient(to bottom, #00427a, #002a4d);
       border-bottom: 3px solid #001a30;
     }
-
     .modal-header h2 {
         margin: 0;
         color: #ffcc00;
@@ -113,49 +101,29 @@
         font-size: 22px;
         text-transform: uppercase;
     }
-
     .close-btn { 
         position: absolute; top: 10px; right: 10px;
         background: #e74c3c; border: 2px solid #000;
-        color: white; font-family: cursive;
+        color: white; font-family: inherit;
         width: 32px; height: 32px; border-radius: 6px;
         cursor: pointer; box-shadow: 0 3px 0 #922b21;
     }
-
     .hype-section {
         padding: 15px;
         background: rgba(255, 204, 0, 0.1);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .hype-text {
         color: #fff;
-        font-size: 15px;
-        line-height: 1.4;
+        font-size: 16px;
+        line-height: 1.3;
         margin: 0;
     }
-
-    /* Excited/Urgency Text Style */
-    .hype-highlight { 
-        color: #ffcc00; 
-        font-size: 18px; 
-        display: block; 
-        margin: 8px 0;
-        text-decoration: underline;
-    }
-    
-    .users-online {
-        font-size: 12px;
-        color: #2ecc71;
-        font-weight: bold;
-        font-family: sans-serif;
-    }
-
+    .hype-highlight { color: #ffcc00; font-size: 18px; display: block; margin-top: 5px; }
     .offer-list { 
         padding: 15px;
         overflow: hidden; 
     }
-
     .offer-card {
       display: flex;
       align-items: center;
@@ -170,12 +138,8 @@
       transition: all 0.2s;
       box-shadow: 0 4px 0 rgba(0,0,0,0.4);
     }
-
     .offer-card:hover { border-color: #ffcc00; transform: translateY(-2px); background: #005094; }
-
     .offer-info { text-align: left; }
-
-    /* Title weight set to 900 */
     .offer-title {
         display: block;
         color: #ffcc00;
@@ -183,44 +147,34 @@
         margin-bottom: 2px;
         font-weight: 900; 
     }
-
-    .offer-sub { font-family: sans-serif; font-size: 11px; opacity: 0.7; font-weight: bold; text-transform: uppercase; }
-
+    .offer-sub { font-family: sans-serif; font-size: 11px; opacity: 0.6; font-weight: bold; text-transform: uppercase; }
     .claim-tag {
         background: #27ae60;
-        padding: 5px 12px;
+        padding: 5px 10px;
         border-radius: 8px;
-        font-size: 13px;
-        font-weight: bold;
+        font-size: 12px;
         box-shadow: 0 2px 0 #1e8449;
     }
-
     .success-msg { padding: 40px 20px; }
     .success-msg h3 { color: #2ecc71; font-size: 24px; margin-bottom: 10px; }
-
     @keyframes popIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
     footer { padding: 15px; font-size: 11px; opacity: 0.6; font-family: sans-serif; }
+    button#openOffers{ font-family: inherit; }
   </style>
 </head>
-
 <body>
   <div class="container">
     <img src="https://logos-world.net/wp-content/uploads/2023/05/Clash-Royale-Logo.png" alt="Clash Royale Logo" class="logo">
     <p class="tagline">Epic Rewards Await!</p>
-
     <button id="openOffers" class="main-btn">Open Clash Royale</button>
-
     <div class="store-badges">
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="store-badge-img">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="store-badge-img">
     </div>
-
     <div class="deco">
       <img src="https://i.ibb.co/1YyrpKyn/king.png" alt="King">
     </div>
   </div>
-
   <div id="offerModal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
@@ -230,29 +184,22 @@
       
       <div class="hype-section">
           <p class="hype-text">
-            🔥 <strong>LEGENDARY LOOT DETECTED!</strong> 🔥<br>
-            Complete just 1 quick task below to claim your Gems and Chests!
-            <span class="hype-highlight">⚡ UNLOCKS IN SECONDS ⚡</span>
-            <span class="users-online">🟢 1,428 players claiming rewards right now...</span>
+            ALMOST THERE! COMPLETE 1 TASK TO UNLOCK YOUR CHEST.
+            <span class="hype-highlight">⚡ INSTANT DELIVERY ⚡</span>
           </p>
       </div>
-
       <div id="offerList" class="offer-list">
         <p>Searching for loot...</p>
       </div>
     </div>
   </div>
-
   <footer>© 2026 Supercell Landers</footer>
-
   <script>
     const modal = document.getElementById('offerModal');
     const offerList = document.getElementById('offerList');
     const closeBtn = document.getElementById('closeOffers');
     const openBtn = document.getElementById('openOffers');
-
     const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900&s1=&s2=";
-
     function onLead(campaign_id, campaign_name) {
         offerList.innerHTML = `
             <div class="success-msg">
@@ -261,20 +208,20 @@
             </div>
         `;
     }
-
     async function fetchOffers() {
       try {
         const response = await fetch(API_URL);
         const data = await response.json();
         
         if(data && data.length > 0) {
+          // Limited to first 3 offers
           offerList.innerHTML = data.slice(0, 3).map(offer => `
             <a href="${offer.url}" target="_blank" class="offer-card">
               <div class="offer-info">
                 <span class="offer-title">${offer.anchor}</span>
-                <span class="offer-sub">REQUIRED: ${offer.conversion}</span>
+                <span class="offer-sub">Status: ${offer.conversion}</span>
               </div>
-              <div class="claim-tag">CLAIM</div>
+              <div class="claim-tag">GO!</div>
             </a>
           `).join('');
         } else {
@@ -284,12 +231,10 @@
         offerList.innerHTML = '<p>Connection Error. Refresh page.</p>';
       }
     }
-
     openBtn.addEventListener('click', () => {
       modal.classList.add('active');
       fetchOffers();
     });
-
     closeBtn.addEventListener('click', () => modal.classList.remove('active'));
     window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
   </script>

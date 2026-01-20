@@ -3,83 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mia Collins | Exclusive Access</title>
+    <title>Mia Collins | Link Tree</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
-            --main-pink: #fce4ec;
-            --dark-pink: #f8bbd0;
-            --accent-red: #880e4f;
-            --text-gray: #4a4a4a;
-            --white: #ffffff;
+            --bg-color: #fdf2f2;
+            --primary-pink: #f8bbd0;
+            --accent-maroon: #880e4f;
+            --card-bg: rgba(255, 255, 255, 0.4);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
         body {
-            background-color: var(--main-pink);
+            background-color: var(--bg-color);
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            color: var(--accent-red);
-            overflow-x: hidden;
+            color: var(--accent-maroon);
+            overflow: hidden;
         }
 
-        /* --- Main Page Layout --- */
-        .page-wrapper {
+        /* --- Main Mobile Container --- */
+        .container {
             width: 100%;
             max-width: 430px;
-            padding: 40px 20px;
+            padding: 40px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
-            z-index: 2;
         }
 
-        .top-bar {
+        .top-icons {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 30px;
-            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
         }
 
-        .profile-img {
-            width: 110px;
-            height: 110px;
+        .profile-pic {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             border: 4px solid white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             object-fit: cover;
+            margin-bottom: 20px;
         }
 
-        h1 { margin: 20px 0 35px; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; }
+        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; }
 
-        /* Buttons */
-        .link-btn {
+        /* --- Link Buttons --- */
+        .link-item {
             width: 100%;
-            background: var(--dark-pink);
+            background: var(--primary-pink);
             padding: 16px 20px;
             border-radius: 50px;
             display: flex;
             align-items: center;
-            text-decoration: none;
-            color: var(--accent-red);
-            font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             border: none;
+            color: var(--accent-maroon);
+            font-weight: 600;
+            font-size: 1rem;
         }
 
-        .link-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        .link-item:hover { transform: scale(1.02); filter: brightness(1.03); }
 
-        .btn-icon {
-            width: 35px;
-            height: 35px;
+        .icon-box {
+            width: 38px;
+            height: 38px;
             background: white;
             border-radius: 50%;
             display: flex;
@@ -88,180 +87,161 @@
             margin-right: 15px;
         }
 
-        .fa-share-nodes { margin-left: auto; opacity: 0.5; font-size: 0.9rem; }
+        .fa-share-nodes { margin-left: auto; opacity: 0.6; font-size: 0.9rem; }
 
-        /* Flamingo Art Background */
-        .bottom-art {
-            position: fixed;
+        /* Flamingo Image Background */
+        .flamingo-bg {
+            position: absolute;
             bottom: 0;
             width: 100%;
-            max-width: 430px;
-            z-index: 1;
             pointer-events: none;
+            z-index: -1;
         }
 
         /* --- PROFESSIONAL POPUP (LOCKER) --- */
-        #locker-overlay {
+        #locker {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            display: none;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            display: none; /* Hidden */
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 9999;
             padding: 20px;
         }
 
-        .locker-content {
+        .modal {
             background: white;
             width: 100%;
             max-width: 380px;
-            border-radius: 28px;
+            border-radius: 30px;
             padding: 30px 20px;
             text-align: center;
-            animation: slideUp 0.4s ease-out;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 2px solid var(--primary-pink);
+            animation: popIn 0.3s ease-out;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
-        .locker-header h2 { font-size: 1.4rem; color: #333; margin-bottom: 10px; }
-        .locker-header p { font-size: 0.9rem; color: #666; margin-bottom: 25px; line-height: 1.4; }
+        .modal h2 { font-size: 1.4rem; margin-bottom: 10px; }
+        .modal p { font-size: 0.9rem; color: #555; margin-bottom: 25px; line-height: 1.4; }
 
-        /* Offer Items */
-        .offer-list { text-align: left; }
-        
-        .offer-card {
+        /* Offer Items (Limit to 3) */
+        .offer-row {
             display: flex;
             align-items: center;
             padding: 12px;
-            background: #fff5f7;
-            border: 1px solid var(--dark-pink);
+            background: #fff9fa;
+            border: 1px solid #fce4ec;
             border-radius: 15px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-decoration: none;
-            transition: background 0.2s;
+            color: #333;
+            text-align: left;
         }
 
-        .offer-card:hover { background: var(--dark-pink); }
-
-        .offer-img { width: 45px; height: 45px; border-radius: 10px; margin-right: 15px; background: #eee; }
-        
-        .offer-text b { display: block; font-size: 0.9rem; color: var(--accent-red); margin-bottom: 2px; }
+        .offer-row:hover { background: var(--primary-pink); }
+        .offer-img { width: 45px; height: 45px; border-radius: 10px; margin-right: 12px; }
+        .offer-text b { display: block; font-size: 0.85rem; color: var(--accent-maroon); }
         .offer-text span { font-size: 0.75rem; color: #777; }
 
-        .loading-spinner { padding: 30px; font-weight: 600; color: var(--accent-red); }
-
+        .close-btn { margin-top: 15px; background: none; border: none; color: #aaa; cursor: pointer; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="page-wrapper">
-        <div class="top-bar">
+    <div class="container">
+        <div class="top-icons">
             <i class="fa-solid fa-qrcode"></i>
             <i class="fa-solid fa-share-nodes"></i>
         </div>
 
-        <img src="https://i.imgur.com/8Km9tLL.png" alt="Mia" class="profile-img">
+        <img src="https://via.placeholder.com/150" class="profile-pic">
+        
         <h1>Mia Collins</h1>
 
-        <button class="link-btn" onclick="openLocker('https://onlyfans.com/miacollins')">
-            <div class="btn-icon"><i class="fa-solid fa-star" style="color: #00aff0;"></i></div>
+        <button class="link-item" onclick="showLocker()">
+            <div class="icon-box"><i class="fa-solid fa-star" style="color: #00aff0;"></i></div>
             OnlyFans
             <i class="fa-solid fa-share-nodes"></i>
         </button>
 
-        <button class="link-btn" onclick="openLocker('https://justforfans.com/miacollins')">
-            <div class="btn-icon"><i class="fa-solid fa-heart" style="color: #ff4081;"></i></div>
+        <button class="link-item" onclick="showLocker()">
+            <div class="icon-box"><i class="fa-solid fa-heart" style="color: #ff4081;"></i></div>
             JustForFans
             <i class="fa-solid fa-share-nodes"></i>
         </button>
 
-        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">HeyLink.me</p>
+        <img src="https://i.imgur.com/mOa7XbM.png" class="flamingo-bg">
     </div>
 
-    <img src="https://i.imgur.com/mOa7XbM.png" class="bottom-art">
-
-    <div id="locker-overlay">
-        <div class="locker-content">
-            <div class="locker-header">
-                <i class="fa-solid fa-user-shield" style="font-size: 2.5rem; color: var(--accent-red); margin-bottom: 15px;"></i>
-                <h2>Verification Required</h2>
-                <p>To access Mia's exclusive profile, please complete <b>one</b> quick offer below to verify you are human.</p>
-            </div>
-
-            <div id="offers-container">
-                <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading Offers...</div>
-            </div>
+    <div id="locker">
+        <div class="modal">
+            <h2>Human Verification</h2>
+            <p>Complete <b>one offer</b> below to unlock Mia's exclusive content.</p>
             
-            <button onclick="closeLocker()" style="margin-top: 15px; background: none; border: none; color: #999; font-size: 0.8rem; cursor: pointer;">Cancel</button>
+            <div id="offer-list">
+                <p style="padding: 20px;">Loading offers...</p>
+            </div>
+
+            <button class="close-btn" onclick="hideLocker()">Cancel</button>
         </div>
     </div>
 
     <script>
         const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900";
-        let pendingUrl = "";
 
-        // Function to trigger the locker
-        function openLocker(destination) {
-            pendingUrl = destination;
-            document.getElementById('locker-overlay').style.display = 'flex';
-            fetchOffers();
+        function showLocker() {
+            document.getElementById('locker').style.display = 'flex';
+            loadOffers();
         }
 
-        async function fetchOffers() {
-            const container = document.getElementById('offers-container');
+        function hideLocker() {
+            document.getElementById('locker').style.display = 'none';
+        }
+
+        async function loadOffers() {
+            const listDiv = document.getElementById('offer-list');
             try {
                 const response = await fetch(API_URL);
                 const data = await response.json();
                 
-                container.innerHTML = ""; // Clear loader
+                // Get the array of offers (handle different API formats)
+                const allOffers = Array.isArray(data) ? data : (data.offers || []);
 
-                // Check if API returns a direct array or a nested object
-                const offers = Array.isArray(data) ? data : (data.offers || []);
+                // CRITICAL: Filter to only the first 3 offers
+                const topThree = allOffers.slice(0, 3);
 
-                if (offers.length === 0) {
-                    container.innerHTML = "<p>No offers available in your region. Please try again later.</p>";
+                if (topThree.length === 0) {
+                    listDiv.innerHTML = "No offers available right now.";
                     return;
                 }
 
-                offers.forEach(offer => {
-                    const card = document.createElement('a');
-                    card.className = 'offer-card';
-                    // We open the offer, and usually, the locker would track completion via a postback.
-                    // For front-end, we redirect them to the offer.
-                    card.href = offer.link; 
-                    card.target = "_blank";
-                    
-                    card.innerHTML = `
+                listDiv.innerHTML = ""; // Clear loader
+
+                topThree.forEach(offer => {
+                    const row = document.createElement('a');
+                    row.className = 'offer-row';
+                    row.href = offer.link;
+                    row.target = "_blank";
+                    row.innerHTML = `
                         <img src="${offer.picture || 'https://via.placeholder.com/50'}" class="offer-img">
                         <div class="offer-text">
-                            <b>${offer.name || 'Complete Offer'}</b>
-                            <span>${offer.adcopy || 'Verify to continue'}</span>
+                            <b>${offer.name || 'Special Offer'}</b>
+                            <span>${offer.adcopy || 'Click to verify'}</span>
                         </div>
                     `;
-                    
-                    // Optional: You can add logic here so that after they click, 
-                    // the page waits or redirects to the pendingUrl.
-                    card.onclick = () => {
-                        alert("Please complete the offer in the new tab. Once finished, you will be redirected.");
-                    };
-
-                    container.appendChild(card);
+                    listDiv.appendChild(row);
                 });
 
             } catch (err) {
-                container.innerHTML = "<p>Connection error. Please refresh.</p>";
-                console.error(err);
+                listDiv.innerHTML = "Error loading offers. Please refresh.";
             }
-        }
-
-        function closeLocker() {
-            document.getElementById('locker-overlay').style.display = 'none';
         }
     </script>
 </body>

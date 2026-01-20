@@ -1,248 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mia Collins | Link Tree</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mia Collins Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- CSS VARIABLES --- */
+    :root {
+        --bg-pink: #FFEBEE; /* Main background pale pink */
+        --text-magenta: #A32D58; /* The dark reddish-pink text color */
+        --btn-blue-start: #00C6FF;
+        --btn-blue-end: #0072FF;
+        --btn-pink-start: #FF9A9E;
+        --btn-pink-end: #FAD0C4;
+        --modal-bg: #FFFFFF;
+    }
+
+    /* --- GLOBAL STYLES --- */
+    body {
+      background-color: var(--bg-pink);
+      /* Optional: Add a subtle background image if desired, like the reference */
+      /* background-image: url('your-background-image.jpg'); background-size: cover; */
+      font-family: 'Poppins', sans-serif; 
+      color: var(--text-magenta);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
     
-    <style>
-        :root {
-            --bg-color: #fdf2f2;
-            --primary-pink: #f8bbd0;
-            --accent-maroon: #880e4f;
-            --card-bg: rgba(255, 255, 255, 0.4);
-        }
+    /* Common Icon Style */
+    .icon-svg {
+        width: 24px;
+        height: 24px;
+        fill: var(--text-magenta);
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    .container { 
+        max-width: 480px; 
+        margin: 0 auto; 
+        padding: 20px 25px; 
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            color: var(--accent-maroon);
-            overflow: hidden;
-        }
+    /* --- HEADER SECTION --- */
+    .top-bar {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* Profile Picture */
+    .profile-container {
+        margin-bottom: 15px;
+    }
+    .profile-img { 
+        width: 100px; 
+        height: 100px; 
+        border-radius: 50%; 
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 4px 10px rgba(163, 45, 88, 0.1);
+    }
 
-        /* --- Main Mobile Container --- */
-        .container {
-            width: 100%;
-            max-width: 430px;
-            padding: 40px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
+    .profile-name { 
+        font-size: 1.5rem; 
+        font-weight: 700;
+        margin: 0 0 30px;
+    }
 
-        .top-icons {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
+    /* --- BUTTON STYLES --- */
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      margin-bottom: 15px;
+      border-radius: 50px; /* Pill shape */
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      font-family: inherit;
+    }
 
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
+    .link-btn:hover {
+        transform: translateY(-3px);
+    }
+    
+    .btn-content-left {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+    }
 
-        h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 30px; }
+    .btn-icon {
+        width: 30px;
+        height: 30px;
+        margin-right: 15px;
+        fill: white;
+    }
 
-        /* --- Link Buttons --- */
-        .link-item {
-            width: 100%;
-            background: var(--primary-pink);
-            padding: 16px 20px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            border: none;
-            color: var(--accent-maroon);
-            font-weight: 600;
-            font-size: 1rem;
-        }
+    .btn-share-icon {
+        width: 20px;
+        height: 20px;
+        fill: white;
+        opacity: 0.8;
+    }
 
-        .link-item:hover { transform: scale(1.02); filter: brightness(1.03); }
+    /* Specific Button Colors */
+    .btn-blue {
+        background: linear-gradient(to right, var(--btn-blue-start), var(--btn-blue-end));
+    }
+    .btn-pink {
+        background: linear-gradient(to right, var(--btn-pink-start), var(--btn-pink-end));
+        color: var(--text-magenta);
+    }
+    .btn-pink .btn-icon, .btn-pink .btn-share-icon {
+        fill: var(--text-magenta);
+    }
 
-        .icon-box {
-            width: 38px;
-            height: 38px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-        }
 
-        .fa-share-nodes { margin-left: auto; opacity: 0.6; font-size: 0.9rem; }
+    /* --- FOOTER SECTION --- */
+    .footer-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: auto; /* Pushes to bottom */
+        padding-top: 20px;
+        color: var(--text-magenta);
+        font-weight: 600;
+    }
+    .heylink-logo {
+        display: flex;
+        align-items: center;
+    }
 
-        /* Flamingo Image Background */
-        .flamingo-bg {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
 
-        /* --- PROFESSIONAL POPUP (LOCKER) --- */
-        #locker {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            display: none; /* Hidden */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            padding: 20px;
-        }
+    /* --- POPUP (MODAL) - REDESIGNED FOR NEW THEME --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(163, 45, 88, 0.5); /* Magenta tinted overlay */
+      backdrop-filter: blur(3px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .modal-overlay.active { display: flex; animation: popIn 0.3s ease-out; }
+    
+    .modal-content {
+      background: var(--modal-bg);
+      width: 100%;
+      max-width: 400px;
+      border-radius: 24px;
+      /* Clean white modal, no heavy borders */
+      box-shadow: 0 10px 30px rgba(163, 45, 88, 0.2);
+      position: relative;
+      overflow: hidden; 
+      color: var(--text-magenta);
+    }
+    
+    .modal-header {
+      padding: 20px;
+      /* Solid magenta header */
+      background: var(--text-magenta);
+      color: white;
+      text-align: left;
+    }
+    .modal-header h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .close-btn { 
+        position: absolute; top: 15px; right: 15px;
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: white; 
+        width: 32px; height: 32px; border-radius: 50%;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-weight: bold; transition: background 0.2s;
+    }
+    .close-btn:hover { background: rgba(255,255,255,0.4); }
 
-        .modal {
-            background: white;
-            width: 100%;
-            max-width: 380px;
-            border-radius: 30px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 2px solid var(--primary-pink);
-            animation: popIn 0.3s ease-out;
-        }
+    .hype-section {
+        padding: 20px;
+        background: #FFF0F5; /* Very pale pink */
+        border-bottom: 1px solid #eee;
+    }
+    .hype-text {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+        color: #666;
+    }
+    .hype-highlight { 
+        color: var(--text-magenta); 
+        font-weight: 700; 
+        display: block; 
+        margin-top: 5px; 
+    }
 
-        @keyframes popIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+    .offer-list { 
+        padding: 20px;
+        background: #fafafa;
+    }
+    
+    /* Professional Offer Cards */
+    .offer-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      margin-bottom: 12px;
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .offer-card:hover { 
+        border-color: var(--btn-blue-start); 
+        transform: translateY(-2px); 
+        box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+    }
+    
+    .offer-info { text-align: left; }
+    .offer-title {
+        display: block;
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    .offer-sub { 
+        font-size: 12px; color: #888; font-weight: 500; 
+    }
+    
+    .claim-tag {
+        /* Using the theme's blue gradient for the action button */
+        background: linear-gradient(to right, var(--btn-blue-start), var(--btn-blue-end));
+        color: white;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 700;
+    }
 
-        .modal h2 { font-size: 1.4rem; margin-bottom: 10px; }
-        .modal p { font-size: 0.9rem; color: #555; margin-bottom: 25px; line-height: 1.4; }
-
-        /* Offer Items (Limit to 3) */
-        .offer-row {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: #fff9fa;
-            border: 1px solid #fce4ec;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            color: #333;
-            text-align: left;
-        }
-
-        .offer-row:hover { background: var(--primary-pink); }
-        .offer-img { width: 45px; height: 45px; border-radius: 10px; margin-right: 12px; }
-        .offer-text b { display: block; font-size: 0.85rem; color: var(--accent-maroon); }
-        .offer-text span { font-size: 0.75rem; color: #777; }
-
-        .close-btn { margin-top: 15px; background: none; border: none; color: #aaa; cursor: pointer; font-size: 0.8rem; }
-    </style>
+    .success-msg { padding: 40px 20px; color: #27ae60; }
+    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="top-icons">
-            <i class="fa-solid fa-qrcode"></i>
-            <i class="fa-solid fa-share-nodes"></i>
-        </div>
-
-        <img src="https://via.placeholder.com/150" class="profile-pic">
+  <div class="container">
+    <div class="top-bar">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 3h6v6H3V3zm2 2v2h2V5H5zm8-2h6v6h-6V3zm2 2v2h2V5h-2zM3 13h6v6H3v-6zm2 2v2h2v-2H5zm13-2h3v2h-3v-2zm-3 2h3v2h-3v-2zm3 2h3v3h-3v-3zm-5.5-2.5h2v2h-2v-2zm-2.5 2.5h2.5v2.5H10v-2.5zm2.5-5.5h2v2.5h-2V9.5zM13 16h2v2h-2v-2zm-1-3h2v2h-2v-2zm-3-3h2v2H9v-2z"/></svg>
         
-        <h1>Mia Collins</h1>
-
-        <button class="link-item" onclick="showLocker()">
-            <div class="icon-box"><i class="fa-solid fa-star" style="color: #00aff0;"></i></div>
-            OnlyFans
-            <i class="fa-solid fa-share-nodes"></i>
-        </button>
-
-        <button class="link-item" onclick="showLocker()">
-            <div class="icon-box"><i class="fa-solid fa-heart" style="color: #ff4081;"></i></div>
-            JustForFans
-            <i class="fa-solid fa-share-nodes"></i>
-        </button>
-
-        <img src="https://i.imgur.com/mOa7XbM.png" class="flamingo-bg">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
     </div>
 
-    <div id="locker">
-        <div class="modal">
-            <h2>Human Verification</h2>
-            <p>Complete <b>one offer</b> below to unlock Mia's exclusive content.</p>
-            
-            <div id="offer-list">
-                <p style="padding: 20px;">Loading offers...</p>
-            </div>
+    <div class="profile-container">
+      <img src="https://i.pravatar.cc/150?img=5" alt="Mia Collins" class="profile-img">
+    </div>
+    <h1 class="profile-name">Mia Collins</h1>
 
-            <button class="close-btn" onclick="hideLocker()">Cancel</button>
+    <button id="openOffersBtn" class="link-btn btn-blue">
+        <div class="btn-content-left">
+            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M23 5.5c-.85.38-1.76.64-2.72.75 1-.6 1.76-1.54 2.12-2.66-.9.54-1.9.93-2.97 1.14-.85-.9-2.06-1.47-3.4-1.47-2.58 0-4.67 2.1-4.67 4.67 0 .37.04.73.12 1.08-3.88-.2-7.33-2.06-9.64-4.9-.4.7-.64 1.5-.64 2.36 0 1.62.83 3.05 2.17 3.94-.77-.02-1.5-.23-2.14-.58v.06c0 2.26 1.6 4.15 3.74 4.57-.4.1-.8.16-1.24.16-.3 0-.6-.03-.88-.08.6 1.86 2.34 3.2 4.4 3.24-1.6 1.26-3.6 2-5.77 2-.37 0-.74-.02-1.1-.07 2.06 1.32 4.5 2.1 7.13 2.1 8.56 0 13.24-7.1 13.24-13.25 0-.2 0-.4-.02-.6.9-.66 1.7-1.48 2.3-2.4z"/></svg>
+            <span>exclusive content</span>
+        </div>
+        <svg class="btn-share-icon" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+    </button>
+
+    <a href="#" class="link-btn btn-pink">
+        <div class="btn-content-left">
+             <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span>vip access</span>
+        </div>
+        <svg class="btn-share-icon" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+    </a>
+
+    <div class="footer-bar">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        
+        <div class="heylink-logo">
+            <svg class="icon-svg" style="margin-right: 8px;" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+            HeyLink.me
         </div>
     </div>
 
-    <script>
-        const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900";
+  </div>
 
-        function showLocker() {
-            document.getElementById('locker').style.display = 'flex';
-            loadOffers();
+  <div id="offerModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h2>UNLOCK CONTENT</h2>
+          <button class="close-btn" id="closeOffers">✕</button>
+      </div>
+      
+      <div class="hype-section">
+          <p class="hype-text">
+            Complete a quick task below to verify your access.
+            <span class="hype-highlight">⚡ Instant Unlock ⚡</span>
+          </p>
+      </div>
+      <div id="offerList" class="offer-list">
+        <p>Loading options...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('offerModal');
+    const offerList = document.getElementById('offerList');
+    const closeBtn = document.getElementById('closeOffers');
+    // Using the first button to trigger modal for demonstration
+    const openBtn = document.getElementById('openOffersBtn'); 
+    const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900&s1=&s2=";
+    
+    function onLead(campaign_id, campaign_name) {
+        offerList.innerHTML = `
+            <div class="success-msg">
+                <h3>✔ Verified!</h3>
+                <p>Access granted. Redirecting...</p>
+            </div>
+        `;
+    }
+
+    async function fetchOffers() {
+      try {
+        // Simulate loading for effect
+        offerList.innerHTML = '<p style="text-align:center; padding: 20px;">Loading...</p>';
+        
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        
+        if(data && data.length > 0) {
+          // Limited to first 3 offers and styled professionally
+          offerList.innerHTML = data.slice(0, 3).map(offer => `
+            <a href="${offer.url}" target="_blank" class="offer-card">
+              <div class="offer-info">
+                <span class="offer-title">${offer.anchor}</span>
+                <span class="offer-sub">${offer.conversion || 'Quick Task'}</span>
+              </div>
+              <div class="claim-tag">START</div>
+            </a>
+          `).join('');
+        } else {
+          offerList.innerHTML = '<p style="text-align:center; padding: 20px;">No tasks currently available.</p>';
         }
+      } catch (err) {
+        offerList.innerHTML = '<p style="text-align:center; color: #e74c3c; padding: 20px;">Connection Error. Please refresh.</p>';
+      }
+    }
 
-        function hideLocker() {
-            document.getElementById('locker').style.display = 'none';
-        }
-
-        async function loadOffers() {
-            const listDiv = document.getElementById('offer-list');
-            try {
-                const response = await fetch(API_URL);
-                const data = await response.json();
-                
-                // Get the array of offers (handle different API formats)
-                const allOffers = Array.isArray(data) ? data : (data.offers || []);
-
-                // CRITICAL: Filter to only the first 3 offers
-                const topThree = allOffers.slice(0, 3);
-
-                if (topThree.length === 0) {
-                    listDiv.innerHTML = "No offers available right now.";
-                    return;
-                }
-
-                listDiv.innerHTML = ""; // Clear loader
-
-                topThree.forEach(offer => {
-                    const row = document.createElement('a');
-                    row.className = 'offer-row';
-                    row.href = offer.link;
-                    row.target = "_blank";
-                    row.innerHTML = `
-                        <img src="${offer.picture || 'https://via.placeholder.com/50'}" class="offer-img">
-                        <div class="offer-text">
-                            <b>${offer.name || 'Special Offer'}</b>
-                            <span>${offer.adcopy || 'Click to verify'}</span>
-                        </div>
-                    `;
-                    listDiv.appendChild(row);
-                });
-
-            } catch (err) {
-                listDiv.innerHTML = "Error loading offers. Please refresh.";
-            }
-        }
-    </script>
+    openBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+      fetchOffers();
+    });
+    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+  </script>
 </body>
 </html>

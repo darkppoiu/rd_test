@@ -3,332 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mia Collins Links</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Mia Collins | Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* --- CSS VARIABLES --- */
     :root {
-        --bg-pink: #FFEBEE; /* Main background pale pink */
-        --text-magenta: #A32D58; /* The dark reddish-pink text color */
-        --btn-blue-start: #00C6FF;
-        --btn-blue-end: #0072FF;
-        --btn-pink-start: #FF9A9E;
-        --btn-pink-end: #FAD0C4;
-        --modal-bg: #FFFFFF;
+      --main-bg: #ffe4e9; /* Soft pink background */
+      --text-color: #900c3f; /* Dark magenta text */
+      --btn-bg: #f8c8d0; /* Lighter pink button */
+      --modal-accent: #900c3f;
     }
 
-    /* --- GLOBAL STYLES --- */
     body {
-      background-color: var(--bg-pink);
-      /* Optional: Add a subtle background image if desired, like the reference */
-      /* background-image: url('your-background-image.jpg'); background-size: cover; */
-      font-family: 'Poppins', sans-serif; 
-      color: var(--text-magenta);
+      background-color: var(--main-bg);
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
-      min-height: 100vh;
+      color: var(--text-color);
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
-    }
-    
-    /* Common Icon Style */
-    .icon-svg {
-        width: 24px;
-        height: 24px;
-        fill: var(--text-magenta);
-    }
-
-    .container { 
-        max-width: 480px; 
-        margin: 0 auto; 
-        padding: 20px 25px; 
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* --- HEADER SECTION --- */
-    .top-bar {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    /* Profile Picture */
-    .profile-container {
-        margin-bottom: 15px;
-    }
-    .profile-img { 
-        width: 100px; 
-        height: 100px; 
-        border-radius: 50%; 
-        object-fit: cover;
-        border: 3px solid white;
-        box-shadow: 0 4px 10px rgba(163, 45, 88, 0.1);
-    }
-
-    .profile-name { 
-        font-size: 1.5rem; 
-        font-weight: 700;
-        margin: 0 0 30px;
-    }
-
-    /* --- BUTTON STYLES --- */
-    .link-btn {
-      display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      margin-bottom: 15px;
-      border-radius: 50px; /* Pill shape */
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-      border: none;
+      min-height: 100vh;
+    }
+
+    /* --- TOP BAR --- */
+    .top-nav {
       width: 100%;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .link-btn:hover {
-        transform: translateY(-3px);
-    }
-    
-    .btn-content-left {
-        display: flex;
-        align-items: center;
-        flex-grow: 1;
-    }
-
-    .btn-icon {
-        width: 30px;
-        height: 30px;
-        margin-right: 15px;
-        fill: white;
-    }
-
-    .btn-share-icon {
-        width: 20px;
-        height: 20px;
-        fill: white;
-        opacity: 0.8;
-    }
-
-    /* Specific Button Colors */
-    .btn-blue {
-        background: linear-gradient(to right, var(--btn-blue-start), var(--btn-blue-end));
-    }
-    .btn-pink {
-        background: linear-gradient(to right, var(--btn-pink-start), var(--btn-pink-end));
-        color: var(--text-magenta);
-    }
-    .btn-pink .btn-icon, .btn-pink .btn-share-icon {
-        fill: var(--text-magenta);
-    }
-
-
-    /* --- FOOTER SECTION --- */
-    .footer-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin-top: auto; /* Pushes to bottom */
-        padding-top: 20px;
-        color: var(--text-magenta);
-        font-weight: 600;
-    }
-    .heylink-logo {
-        display: flex;
-        align-items: center;
-    }
-
-
-    /* --- POPUP (MODAL) - REDESIGNED FOR NEW THEME --- */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(163, 45, 88, 0.5); /* Magenta tinted overlay */
-      backdrop-filter: blur(3px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+      max-width: 450px;
+      display: flex;
+      justify-content: space-between;
       padding: 20px;
       box-sizing: border-box;
     }
-    .modal-overlay.active { display: flex; animation: popIn 0.3s ease-out; }
-    
-    .modal-content {
-      background: var(--modal-bg);
-      width: 100%;
+
+    .top-nav svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--text-color);
+      cursor: pointer;
+    }
+
+    /* --- PROFILE --- */
+    .profile-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 15px;
+    }
+
+    /* --- BUTTONS --- */
+    .links-container {
+      width: 90%;
       max-width: 400px;
-      border-radius: 24px;
-      /* Clean white modal, no heavy borders */
-      box-shadow: 0 10px 30px rgba(163, 45, 88, 0.2);
-      position: relative;
-      overflow: hidden; 
-      color: var(--text-magenta);
     }
-    
-    .modal-header {
-      padding: 20px;
-      /* Solid magenta header */
-      background: var(--text-magenta);
-      color: white;
+
+    .link-card {
+      background-color: var(--btn-bg);
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      margin-bottom: 15px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(144, 12, 63, 0.15);
+    }
+
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .icon-box img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .link-text {
+      flex-grow: 1;
       text-align: left;
-    }
-    .modal-header h2 {
-        margin: 0;
-        font-size: 20px;
-        font-weight: 700;
-    }
-    .close-btn { 
-        position: absolute; top: 15px; right: 15px;
-        background: rgba(255,255,255,0.2);
-        border: none;
-        color: white; 
-        width: 32px; height: 32px; border-radius: 50%;
-        cursor: pointer; display: flex; align-items: center; justify-content: center;
-        font-weight: bold; transition: background 0.2s;
-    }
-    .close-btn:hover { background: rgba(255,255,255,0.4); }
-
-    .hype-section {
-        padding: 20px;
-        background: #FFF0F5; /* Very pale pink */
-        border-bottom: 1px solid #eee;
-    }
-    .hype-text {
-        font-size: 14px;
-        line-height: 1.5;
-        margin: 0;
-        color: #666;
-    }
-    .hype-highlight { 
-        color: var(--text-magenta); 
-        font-weight: 700; 
-        display: block; 
-        margin-top: 5px; 
+      font-size: 18px;
+      text-transform: lowercase;
     }
 
-    .offer-list { 
-        padding: 20px;
-        background: #fafafa;
+    .share-mini {
+      width: 20px;
+      height: 20px;
+      fill: var(--text-color);
+      opacity: 0.6;
     }
-    
-    /* Professional Offer Cards */
-    .offer-card {
+
+    /* --- FOOTER --- */
+    .footer {
+      margin-top: auto;
+      width: 100%;
+      max-width: 450px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      font-weight: 600;
+    }
+
+    .heylink-mark {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* --- MODAL / POPUP --- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-box {
+      background: white;
+      width: 100%;
+      max-width: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      background: var(--modal-accent);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-header h3 { margin: 0; font-size: 18px; letter-spacing: 1px; }
+
+    .close-modal {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .modal-instruction {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .offer-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 15px;
-      margin-bottom: 12px;
-      background: white;
       border: 1px solid #eee;
       border-radius: 12px;
+      margin-bottom: 10px;
       text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .offer-card:hover { 
-        border-color: var(--btn-blue-start); 
-        transform: translateY(-2px); 
-        box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-    }
-    
-    .offer-info { text-align: left; }
-    .offer-title {
-        display: block;
-        color: #333;
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 4px;
-    }
-    .offer-sub { 
-        font-size: 12px; color: #888; font-weight: 500; 
-    }
-    
-    .claim-tag {
-        /* Using the theme's blue gradient for the action button */
-        background: linear-gradient(to right, var(--btn-blue-start), var(--btn-blue-end));
-        color: white;
-        padding: 8px 16px;
-        border-radius: 50px;
-        font-size: 12px;
-        font-weight: 700;
+      color: #333;
+      transition: background 0.2s;
     }
 
-    .success-msg { padding: 40px 20px; color: #27ae60; }
-    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    
+    .offer-item:hover { background: #fff5f7; border-color: var(--btn-bg); }
+
+    .offer-btn {
+      background: var(--modal-accent);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="top-bar">
-        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 3h6v6H3V3zm2 2v2h2V5H5zm8-2h6v6h-6V3zm2 2v2h2V5h-2zM3 13h6v6H3v-6zm2 2v2h2v-2H5zm13-2h3v2h-3v-2zm-3 2h3v2h-3v-2zm3 2h3v3h-3v-3zm-5.5-2.5h2v2h-2v-2zm-2.5 2.5h2.5v2.5H10v-2.5zm2.5-5.5h2v2.5h-2V9.5zM13 16h2v2h-2v-2zm-1-3h2v2h-2v-2zm-3-3h2v2H9v-2z"/></svg>
-        
-        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
-    </div>
+  <div class="top-nav">
+    <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-3 2h3v2h-3v-2zm3 2h3v3h-3v-3zm-3 0h2v2h-2v-2zm-3-3h2v2h-2v-2zm3-3h2v2h-2v-2z"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+  </div>
 
-    <div class="profile-container">
-      <img src="https://i.pravatar.cc/150?img=5" alt="Mia Collins" class="profile-img">
-    </div>
-    <h1 class="profile-name">Mia Collins</h1>
+  <div class="profile-section">
+    <img src="https://i.ibb.co/L6vj8N0/avatar.jpg" alt="Mia Collins" class="profile-img">
+    <div class="profile-name">Mia Collins</div>
+  </div>
 
-    <button id="openOffersBtn" class="link-btn btn-blue">
-        <div class="btn-content-left">
-            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M23 5.5c-.85.38-1.76.64-2.72.75 1-.6 1.76-1.54 2.12-2.66-.9.54-1.9.93-2.97 1.14-.85-.9-2.06-1.47-3.4-1.47-2.58 0-4.67 2.1-4.67 4.67 0 .37.04.73.12 1.08-3.88-.2-7.33-2.06-9.64-4.9-.4.7-.64 1.5-.64 2.36 0 1.62.83 3.05 2.17 3.94-.77-.02-1.5-.23-2.14-.58v.06c0 2.26 1.6 4.15 3.74 4.57-.4.1-.8.16-1.24.16-.3 0-.6-.03-.88-.08.6 1.86 2.34 3.2 4.4 3.24-1.6 1.26-3.6 2-5.77 2-.37 0-.74-.02-1.1-.07 2.06 1.32 4.5 2.1 7.13 2.1 8.56 0 13.24-7.1 13.24-13.25 0-.2 0-.4-.02-.6.9-.66 1.7-1.48 2.3-2.4z"/></svg>
-            <span>exclusive content</span>
-        </div>
-        <svg class="btn-share-icon" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+  <div class="links-container">
+    <button class="link-card" onclick="openModal()">
+      <div class="icon-box">
+        <img src="https://cdn.worldvectorlogo.com/logos/onlyfans-2.svg" alt="OF">
+      </div>
+      <span class="link-text">onlyfans</span>
+      <svg class="share-mini" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
     </button>
 
-    <a href="#" class="link-btn btn-pink">
-        <div class="btn-content-left">
-             <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            <span>vip access</span>
-        </div>
-        <svg class="btn-share-icon" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
-    </a>
+    <button class="link-card" onclick="openModal()">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="#ff4d6d" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+      <span class="link-text">JustForFans</span>
+      <svg class="share-mini" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+    </button>
+  </div>
 
-    <div class="footer-bar">
-        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-        
-        <div class="heylink-logo">
-            <svg class="icon-svg" style="margin-right: 8px;" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
-            HeyLink.me
-        </div>
+  <div class="footer">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+    <div class="heylink-mark">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+      HeyLink.me
     </div>
-
   </div>
 
   <div id="offerModal" class="modal-overlay">
-    <div class="modal-content">
+    <div class="modal-box">
       <div class="modal-header">
-          <h2>UNLOCK CONTENT</h2>
-          <button class="close-btn" id="closeOffers">✕</button>
+        <h3>PRIVATE ACCESS</h3>
+        <button class="close-modal" onclick="closeModal()">✕</button>
       </div>
-      
-      <div class="hype-section">
-          <p class="hype-text">
-            Complete a quick task below to verify your access.
-            <span class="hype-highlight">⚡ Instant Unlock ⚡</span>
-          </p>
-      </div>
-      <div id="offerList" class="offer-list">
-        <p>Loading options...</p>
+      <div class="modal-body">
+        <p class="modal-instruction">Please complete one of the steps below to verify your age and unlock the content.</p>
+        <div id="offerList">
+          <p>Finding available tasks...</p>
+        </div>
       </div>
     </div>
   </div>
@@ -336,53 +282,40 @@
   <script>
     const modal = document.getElementById('offerModal');
     const offerList = document.getElementById('offerList');
-    const closeBtn = document.getElementById('closeOffers');
-    // Using the first button to trigger modal for demonstration
-    const openBtn = document.getElementById('openOffersBtn'); 
     const API_URL = "https://d2xohqmdyl2cj3.cloudfront.net/public/offers/feed.php?user_id=584180&api_key=ad55fcf79b3953d539938be8015c3900&s1=&s2=";
-    
-    function onLead(campaign_id, campaign_name) {
-        offerList.innerHTML = `
-            <div class="success-msg">
-                <h3>✔ Verified!</h3>
-                <p>Access granted. Redirecting...</p>
-            </div>
-        `;
+
+    function openModal() {
+      modal.classList.add('active');
+      fetchOffers();
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
     }
 
     async function fetchOffers() {
       try {
-        // Simulate loading for effect
-        offerList.innerHTML = '<p style="text-align:center; padding: 20px;">Loading...</p>';
-        
         const response = await fetch(API_URL);
         const data = await response.json();
-        
         if(data && data.length > 0) {
-          // Limited to first 3 offers and styled professionally
           offerList.innerHTML = data.slice(0, 3).map(offer => `
-            <a href="${offer.url}" target="_blank" class="offer-card">
-              <div class="offer-info">
-                <span class="offer-title">${offer.anchor}</span>
-                <span class="offer-sub">${offer.conversion || 'Quick Task'}</span>
+            <a href="${offer.url}" target="_blank" class="offer-item">
+              <div style="text-align: left">
+                <div style="font-weight: 600; font-size: 15px;">${offer.anchor}</div>
+                <div style="font-size: 11px; color: #888;">Complete to unlock</div>
               </div>
-              <div class="claim-tag">START</div>
+              <div class="offer-btn">GO</div>
             </a>
           `).join('');
         } else {
-          offerList.innerHTML = '<p style="text-align:center; padding: 20px;">No tasks currently available.</p>';
+          offerList.innerHTML = '<p>No tasks available right now. Please try again later.</p>';
         }
-      } catch (err) {
-        offerList.innerHTML = '<p style="text-align:center; color: #e74c3c; padding: 20px;">Connection Error. Please refresh.</p>';
+      } catch (e) {
+        offerList.innerHTML = '<p>Error loading tasks. Please refresh.</p>';
       }
     }
 
-    openBtn.addEventListener('click', () => {
-      modal.classList.add('active');
-      fetchOffers();
-    });
-    closeBtn.addEventListener('click', () => modal.classList.remove('active'));
-    window.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+    window.onclick = (e) => { if(e.target == modal) closeModal(); }
   </script>
 </body>
 </html>

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Caitlyn Babe | Links</title>
+  <title>Mia Collins | Links</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --main-bg: #ffe4e9; /* Soft pink background */
-      --text-color: #900c3f; /* Dark magenta text */
-      --btn-bg: #f8c8d0; /* Lighter pink button */
+      --main-bg: #ffe4e9; 
+      --text-color: #900c3f; 
+      --btn-bg: #f8c8d0; 
       --modal-accent: #900c3f;
     }
 
@@ -25,7 +25,7 @@
       min-height: 100vh;
     }
 
-    /* --- TOP BAR --- */
+    /* --- TOP NAVIGATION --- */
     .top-nav {
       width: 100%;
       max-width: 450px;
@@ -39,10 +39,9 @@
       width: 28px;
       height: 28px;
       fill: var(--text-color);
-      cursor: pointer;
     }
 
-    /* --- PROFILE --- */
+    /* --- PROFILE SECTION --- */
     .profile-section {
       text-align: center;
       margin-bottom: 30px;
@@ -79,7 +78,7 @@
       text-decoration: none;
       color: var(--text-color);
       font-weight: 500;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.2s ease;
       cursor: pointer;
       border: none;
       width: 100%;
@@ -101,7 +100,7 @@
       margin-right: 15px;
     }
 
-    .icon-box img {
+    .icon-box img, .icon-box svg {
       width: 24px;
       height: 24px;
     }
@@ -133,18 +132,12 @@
       font-weight: 600;
     }
 
-    .heylink-mark {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    /* --- MODAL / POPUP --- */
+    /* --- PROFESSIONAL MODAL --- */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
       display: none;
       justify-content: center;
       align-items: center;
@@ -157,16 +150,16 @@
     .modal-box {
       background: white;
       width: 100%;
-      max-width: 380px;
-      border-radius: 20px;
+      max-width: 400px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      animation: slideUp 0.3s ease-out;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      animation: popIn 0.3s ease;
     }
 
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .modal-header {
@@ -177,29 +170,13 @@
       position: relative;
     }
 
-    .modal-header h3 { margin: 0; font-size: 18px; letter-spacing: 1px; }
-
     .close-modal {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
+      position: absolute; right: 15px; top: 15px;
+      background: none; border: none; color: white;
+      font-size: 22px; cursor: pointer;
     }
 
-    .modal-body {
-      padding: 25px;
-      text-align: center;
-    }
-
-    .modal-instruction {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 20px;
-    }
+    .modal-body { padding: 30px; text-align: center; }
 
     .offer-item {
       display: flex;
@@ -207,21 +184,21 @@
       justify-content: space-between;
       padding: 15px;
       border: 1px solid #eee;
-      border-radius: 12px;
-      margin-bottom: 10px;
+      border-radius: 15px;
+      margin-bottom: 12px;
       text-decoration: none;
       color: #333;
       transition: background 0.2s;
     }
 
-    .offer-item:hover { background: #fff5f7; border-color: var(--btn-bg); }
+    .offer-item:hover { background: #fff0f3; border-color: var(--btn-bg); }
 
     .offer-btn {
       background: var(--modal-accent);
       color: white;
-      padding: 6px 15px;
+      padding: 8px 18px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
     }
   </style>
@@ -234,8 +211,8 @@
   </div>
 
   <div class="profile-section">
-    <img src="https://cdn-b.heylink.me/media/users/avatars/3a8dfac64bf3474caf836624b347992f.webp" alt="Caitlyn Babe" class="profile-img">
-    <div class="profile-name">Caitlyn Babe</div>
+    <img src="https://imgur.com/a/CFTkXv3.png" alt="Mia Collins" class="profile-img">
+    <div class="profile-name">Mia Collins</div>
   </div>
 
   <div class="links-container">
@@ -249,7 +226,7 @@
 
     <button class="link-card" onclick="openModal()">
       <div class="icon-box">
-        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="#ff4d6d" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <svg viewBox="0 0 24 24"><path fill="#ff4d6d" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
       </div>
       <span class="link-text">JustForFans</span>
       <svg class="share-mini" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
@@ -258,7 +235,7 @@
 
   <div class="footer">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-    <div class="heylink-mark">
+    <div style="display: flex; align-items: center; gap: 5px;">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
       HeyLink.me
     </div>
@@ -267,13 +244,13 @@
   <div id="offerModal" class="modal-overlay">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>PRIVATE ACCESS</h3>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: 1px;">VERIFICATION REQUIRED</h3>
         <button class="close-modal" onclick="closeModal()">✕</button>
       </div>
       <div class="modal-body">
-        <p class="modal-instruction">Please complete one of the steps below to verify your age and unlock the content.</p>
+        <p style="font-size: 14px; color: #666; margin-bottom: 25px;">To view this private profile, please complete one simple task below to verify you are a human.</p>
         <div id="offerList">
-          <p>Finding available tasks...</p>
+          <p>Syncing verification tasks...</p>
         </div>
       </div>
     </div>
@@ -302,16 +279,16 @@
             <a href="${offer.url}" target="_blank" class="offer-item">
               <div style="text-align: left">
                 <div style="font-weight: 600; font-size: 15px;">${offer.anchor}</div>
-                <div style="font-size: 11px; color: #888;">Complete to unlock</div>
+                <div style="font-size: 11px; color: #888;">Instant Access</div>
               </div>
-              <div class="offer-btn">GO</div>
+              <div class="offer-btn">VERIFY</div>
             </a>
           `).join('');
         } else {
-          offerList.innerHTML = '<p>No tasks available right now. Please try again later.</p>';
+          offerList.innerHTML = '<p>Tasks currently unavailable. Please refresh.</p>';
         }
       } catch (e) {
-        offerList.innerHTML = '<p>Error loading tasks. Please refresh.</p>';
+        offerList.innerHTML = '<p>Network error. Please try again.</p>';
       }
     }
 

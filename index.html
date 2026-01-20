@@ -7,9 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --main-bg: #ffe4e9; 
-      --text-color: #900c3f; 
-      --btn-bg: #f8c8d0; 
+      --main-bg: #ffe4e9; /* Soft pink background from image */
+      --text-color: #900c3f; /* Dark magenta text */
+      --btn-bg: #f8c8d0; /* Lighter pink for buttons */
       --modal-accent: #900c3f;
     }
 
@@ -211,7 +211,7 @@
   </div>
 
   <div class="profile-section">
-    <img src="'https://cdn-b.heylink.me/media/users/avatars/cd5805b7acef41cda88c3a30adb9e47e.webp" alt="Mia Collins" class="profile-img">
+    <img src="https://i.ibb.co/1J69W17m/UVOYPry.png" alt="Mia Collins" class="profile-img">
     <div class="profile-name">Mia Collins</div>
   </div>
 
@@ -244,13 +244,13 @@
   <div id="offerModal" class="modal-overlay">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 style="margin: 0; font-size: 18px; letter-spacing: 1px;">VERIFICATION REQUIRED</h3>
+        <h3 style="margin: 0; font-size: 18px; letter-spacing: 1px;">PRIVATE CONTENT</h3>
         <button class="close-modal" onclick="closeModal()">✕</button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 14px; color: #666; margin-bottom: 25px;">To view this private profile, please complete one simple task below to verify you are a human.</p>
+        <p style="font-size: 14px; color: #666; margin-bottom: 25px;">This profile is private. Please complete one verification step below to gain instant access.</p>
         <div id="offerList">
-          <p>Syncing verification tasks...</p>
+          <p>Loading available tasks...</p>
         </div>
       </div>
     </div>
@@ -279,16 +279,16 @@
             <a href="${offer.url}" target="_blank" class="offer-item">
               <div style="text-align: left">
                 <div style="font-weight: 600; font-size: 15px;">${offer.anchor}</div>
-                <div style="font-size: 11px; color: #888;">Instant Access</div>
+                <div style="font-size: 11px; color: #888;">Instant Access After Step</div>
               </div>
-              <div class="offer-btn">VERIFY</div>
+              <div class="offer-btn">UNLOCK</div>
             </a>
           `).join('');
         } else {
-          offerList.innerHTML = '<p>Tasks currently unavailable. Please refresh.</p>';
+          offerList.innerHTML = '<p>No tasks available. Please try again later.</p>';
         }
       } catch (e) {
-        offerList.innerHTML = '<p>Network error. Please try again.</p>';
+        offerList.innerHTML = '<p>Connection error. Please refresh.</p>';
       }
     }
 
